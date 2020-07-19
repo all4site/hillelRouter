@@ -14,7 +14,8 @@ class Router
 	public static function dispatch()
 	{
 		if (self::match()) {
-			dump(self::getRouter());
+			dump(self::$router['controller']);
+
 		} else {
 			http_response_code('404');
 			include __DIR__ . '/../public/404.php';
@@ -45,11 +46,6 @@ class Router
 		}
 		return false;
 
-	}
-
-	private static function getRouter()
-	{
-		return self::$router;
 	}
 
 	private static function getRouters()

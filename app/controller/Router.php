@@ -14,7 +14,7 @@ class Router
 	public static function dispatch()
 	{
 		if (self::match()) {
-			echo 'asdas';
+			dump(self::getRouter());
 		} else {
 			http_response_code('404');
 			include __DIR__ . '/../public/404.php';
@@ -24,11 +24,9 @@ class Router
 	public static function match()
 	{
 		self::$url = $_SERVER['REQUEST_URI'];
-		$router = self::$router;
-		$routers = self::getRouters();
 		$url = trim(self::$url, '/');
 
-		foreach ($routers as $key => $value) {
+		foreach (self::getRouters() as $key => $value) {
 			if (preg_match("#$key#i", $url, $matches)) {
 				foreach ($matches as $k => $v) {
 					if (is_string($k)) {
@@ -37,13 +35,23 @@ class Router
 						$router = $value;
 					}
 				}
+				if (!isset($router['action'])){
+					$router['action'] = 'index';
+				}
 				dump($router);
+				self::$router = $router;
 				return true;
 			}
 		}
 		return false;
 
 	}
+
+	private static function getRouter()
+	{
+		return self::$router;
+	}
+
 	private static function getRouters()
 	{
 		require_once self::$way;

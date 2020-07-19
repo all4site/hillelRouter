@@ -37,6 +37,7 @@ class Router
 						$router = $value;
 					}
 				}
+				dump($router);
 				return true;
 			}
 		}

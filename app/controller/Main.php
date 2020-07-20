@@ -6,8 +6,8 @@ namespace App\controller;
 
 class Main
 {
-	public function __construct()
+	public function index()
 	{
-		echo  __METHOD__;
+		require_once ROOT .'/app/public/template.php';
 	}
 }

@@ -29,9 +29,8 @@ class Router
 
 			if (preg_match("#$key#i", $url, $matches)) {
 
-				$router = self::matchExist($matches, $value);
+				self::$router = self::matchExist($matches, $value);
 
-				self::$router = $router;
 				return true;
 			}
 		}
@@ -71,7 +70,7 @@ class Router
 				$cObj->$method();
 			}
 		} else {
-			echo 'Класс не найден';
+			require_once ROOT.'/app/public/404.php';
 		}
 	}
 

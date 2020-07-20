@@ -1,13 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>404</title>
-</head>
-<body>
- <h1>Страница не найдена</h1>
-</body>
-</html>
+<?php get_header();?>
+	<main role="main" class="flex-shrink-0">
+		<div class="container">
+			<h1 class="mt-5 text-center">Вы искали: <span class="text-danger"><?php echo trim($_SERVER['REQUEST_URI'], '/')
+					;?></span></h1>
+			<p class="text-center">Такой страницы нет</p>
+		</div>
+	</main>
+<?php get_footer();?>
